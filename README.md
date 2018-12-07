@@ -1,2 +1,3 @@
-# yup
-Ops tools for linux shell
+# Yup
+
+> Manage your ops tools for zsh.
