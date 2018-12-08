@@ -27,7 +27,7 @@ main() { # line +4
         YHOME=~/.yup
     }
 
-    getopts f: arg
+    getopts f arg
     if [[ $arg ]] {
         local force=1
     }
