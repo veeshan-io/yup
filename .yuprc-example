@@ -1,6 +1,12 @@
 
 setopt EXTENDED_GLOB
 
+export YHOME="{{yhome}}"
+export PATH="$YHOME/.bin:$PATH"
+
 plugs=(
     git@github.com:veeshan-io/yup-base.git
 )
+
+# ZSH_THEME=
+# yup oh-my-style <https://url-to-your-theme-raw-file>
