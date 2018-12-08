@@ -48,7 +48,7 @@ main() { # line +4
 
     git clone https://github.com/veeshan-io/yup.git $YHOME
 
-    git clone https://github.com/veeshan-io/ylib.git $YHOME/.libs/
+    git -C $YHOME/.libs clone https://github.com/veeshan-io/ylib.git
 }
 
 main $*
