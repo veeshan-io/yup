@@ -1,0 +1,6 @@
+
+setopt EXTENDED_GLOB
+
+plugs=(
+    git@github.com:veeshan-io/yup-base.git
+)
