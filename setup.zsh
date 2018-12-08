@@ -19,7 +19,7 @@ main() { # line +4
         exit
     }
 
-    if [[ ! -n "~/.zshrc" ]] {
+    if [[ ! -f "~/.zshrc" ]] {
         touch ~/.zshrc
     }
 
@@ -50,6 +50,7 @@ main() { # line +4
     git clone https://github.com/veeshan-io/yup.git $YHOME
     git -C $YHOME/.libs clone https://github.com/veeshan-io/ylib.git
 
+    # 上面的两个任务是yup-up的工作，确保能安全自举和更新
     # 构建 yuprc 放入.zshrc中 并执行一次
     # 执行yup update，下载plug 包括扫描各个plug的bin目录 复制文件进.bin
     # .autoload生成 包括: 各plug的init.zsh libs的pub部分 运行一遍，并放进yuprc中
