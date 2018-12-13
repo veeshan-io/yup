@@ -2,6 +2,7 @@
 setopt NO_NOMATCH
 
 export YHOME=$(cd `dirname $0`; pwd)
+alias rm='rm'
 
 yup() {
     local cmd=$1
