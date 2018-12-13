@@ -1,5 +1,5 @@
 setopt NO_NOMATCH
-update() { # line +4
+update() {
     up_addons() {
         local -A checked
 

@@ -1,9 +1,9 @@
 #!/usr/bin/env zsh
-# 初始化及安装
-# 编译补全代码
 setopt EXTENDED_GLOB
 setopt NO_NOMATCH
-main() { # line +4
+
+# Run "setup.sh -f" to force re setup Yup.
+main() {
     if { which tput >/dev/null 2>&1 } {
         ncolors=$(tput colors)
     }
@@ -39,7 +39,7 @@ main() { # line +4
             rm -rf ~/.yup
         } else {
             echo "${YELLOW}You already have Yup installed.${NORMAL}"
-            echo 'Run "yup upgrade" for new version.'
+            echo 'Run "up-yup" for new version.'
             exit
         }
     }
