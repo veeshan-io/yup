@@ -39,7 +39,7 @@ main() { # line +4
             rm -rf ~/.yup
         } else {
             echo "${YELLOW}You already have Yup installed.${NORMAL}"
-            echo "Run `yup upgrade` for new version."
+            echo 'Run `yup upgrade` for new version.'
             exit
         }
     }
