@@ -3,26 +3,28 @@ setopt NO_NOMATCH
 
 export YHOME=$(cd `dirname $0`; pwd)
 
-# 载入libs
-
 yup() {
     local cmd=$1
 
-    for lib ($YHOME/.libs/**/src/*(.)) {
-        [[ -f $lib ]] && source $lib
+    # lib src
+    for src_file ($YHOME/src/*.zsh) {
+        [[ -f $src_file ]] && source $src_file
+    }
+    for src_file ($YHOME/.addons/**/src/*(.)) {
+        [[ -f $src_file ]] && source $src_file
     }
 
     # core call
-    local core_cmd=$YHOME/core/${cmd}.zsh
-    if [[ -f $core_cmd ]] {
-        source $core_cmd
-        main $*[2,-1]
-        exit
+    local cmd_file=$YHOME/cmd/${cmd}.zsh
+    if [[ -f $cmd_file ]] {
+        source $cmd_file
+        $cmd $*[2,-1]
+        return
     }
 
-    for call ($YHOME/.plugs/**/cmd/${cmd}.zsh) {
-        [[ -f $call ]] && source ${call}
-        main $*[2,-1]
+    for cmd_file ($YHOME/.addons/**/cmd/${cmd}.zsh) {
+        [[ -f $cmd_file ]] && source ${cmd_file}
+        $cmd $*[2,-1]
         break
     }
 }

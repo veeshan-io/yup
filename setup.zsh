@@ -46,27 +46,34 @@ main() { # line +4
 
     command -v git >/dev/null 2>&1 || {
         echo "Error: git is not installed."
-        exit 1
+        exit
     }
 
     git clone https://github.com/veeshan-io/yup.git $YHOME
+    git -C $YHOME/.addons clone https://github.com/veeshan-io/ylib.git
     source $YHOME/yup.zsh
-    yup update
+    yup update -i
 
-    # 生成.yuprc 并 env zsh -l 重启
+    local -A vars
+    vars=(
+        yhome
+        $YHOME
+    )
+    file.write ~/.yuprc "$(view.render $YHOME/.yuprc-example ${(kv)vars})"
+
+    if [[ $(file.include ~/.zshrc '.yuprc') == 'no' ]] {
+        echo '>> Raise yup in zshrc'
+        local insert=(
+            "\n"
+            '# Raise yup stack.'
+            'source ~/.yuprc'
+            "\n"
+        )
+        file.backup ~/.zshrc
+        file.write ~/.zshrc "$(file.insert_before ~/.zshrc ZSH/oh-my-zsh.sh $insert)"
+    }
+
+    env zsh -l
 }
 
 main $*
-
-
-# git clone https://github.com/LXTechnic/vagbook-cli.git ~/.vagbook-cli
-# chmod 755 ~/.vagbook-cli/bin/*
-# if [[ -f $HOME/.zshrc ]];then
-#     echo "source $HOME/.vagbook-cli/load.sh" |tee -a $HOME/.zshrc
-#     echo "export VAGBOOK_MASTER=$master" |tee -a $HOME/.zshrc
-# else
-#     echo "source $HOME/.vagbook-cli/load.sh" |tee -a $HOME/.bashrc
-#     echo "export VAGBOOK_MASTER=$master" |tee -a $HOME/.bashrc
-# fi
-# source $HOME/.vagbook-cli/load.sh
-# export VAGBOOK_MASTER=$master

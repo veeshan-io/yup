@@ -4,15 +4,10 @@ setopt EXTENDED_GLOB
 export YHOME="{{yhome}}"
 export PATH="$YHOME/.bin:$PATH"
 
-_libs=(
+_addons=(
 )
-
-_plugs=(
-    https://github.com/LXTechnic/yup-tool.git
-)
-
-# ZSH_THEME=
-# yup oh-my-style <https://url-to-your-theme-raw-file>
 
 source $YHOME/yup.zsh
 source $YHOME/.autoload
+
+# ZSH_THEME=
