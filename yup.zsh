@@ -2,9 +2,10 @@
 setopt NO_NOMATCH
 
 export YHOME=$(cd `dirname $0`; pwd)
-alias rm='rm'
 
 yup() {
+    setopt RM_STAR_SILENT
+
     local cmd=$1
 
     # lib src
