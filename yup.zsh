@@ -16,7 +16,7 @@ yup() {
     }
 
     # core call
-    local cmd_file=$YHOME/cmd/${cmd}.zshQ
+    local cmd_file=$YHOME/cmd/${cmd}.zsh
     if [[ -f $cmd_file ]] {
         source $cmd_file
         $cmd $*[2,-1]
