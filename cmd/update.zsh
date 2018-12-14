@@ -1,25 +1,27 @@
 setopt NO_NOMATCH
 update() {
-    while {getopts c:i arg} {
+    while {getopts u:i arg} {
         case $arg {
             (i)
             local init=1
             ;;
-            (c)
-            local config=$OPTARG
+            (u)
+            local custom=$OPTARG
             ;;
         }
     }
     shift $((OPTIND - 1))
 
     make_yuprc() {
+        echo "$(curl -fsSL $1)" > /tmp/~yuprc-custom
+
         local -A vars
         vars=(
             yhome
             $YHOME
         )
-        "$(curl -fsSL $1)"
-        file.write ~/.yuprc "$(view.render $YHOME/.yuprc-example ${(kv)vars})"
+        file.write ~/.yuprc "$(view.render /tmp/~yuprc-custom ${(kv)vars})"
+        rm -f /tmp/~yuprc-custom
     }
 
     up_addons() {
@@ -78,6 +80,10 @@ update() {
             }
             echo "source $pub" >> $YHOME/.autoload
         }
+    }
+
+    if [[ custom ]] {
+        make_yuprc custom
     }
 
     if [[ ! $_addons ]] {
