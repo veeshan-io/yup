@@ -82,8 +82,8 @@ update() {
         }
     }
 
-    if [[ custom ]] {
-        make_yuprc custom
+    if [[ $custom ]] {
+        make_yuprc $custom
     }
 
     if [[ ! $_addons ]] {
