@@ -4,6 +4,15 @@ setopt NO_NOMATCH
 
 # Run "setup.sh -f" to force re setup Yup.
 main() {
+    while {getopts f arg} {
+        case $arg {
+            (f)
+            local force=1
+            ;;
+        }
+    }
+    shift $((OPTIND - 1))
+
     if { which tput >/dev/null 2>&1 } {
         ncolors=$(tput colors)
     }
@@ -29,10 +38,6 @@ main() {
         YHOME=~/.yup
     }
 
-    getopts f arg
-    if [[ $arg ]] {
-        local force=1
-    }
     if [[ -d "$YHOME" ]] {
         if [[ $force ]] {
             echo "${YELLOW}Remove previous installed Yup.${NORMAL}"
@@ -63,14 +68,17 @@ main() {
 
     if [[ $(file.include ~/.zshrc '.yuprc') == 'no' ]] {
         echo '>> Raise yup in zshrc'
-        local insert=(
-            "\n"
-            '# Raise yup stack.'
-            'source ~/.yuprc'
-            "\n"
-        )
+        # local insert=(
+        #     "\n"
+        #     '# Raise yup stack.'
+        #     'source ~/.yuprc'
+        #     "\n"
+        # )
+
         file.backup ~/.zshrc
-        file.write ~/.zshrc "$(file.insert_before ~/.zshrc ZSH/oh-my-zsh.sh $insert)"
+        sed -i 's#source $ZSH/oh-my-zsh.sh#\n\# Raise yup stack.\nsource ~/.yuprc\n\nsource $ZSH/oh-my-zsh.sh#' ~/.zshrc
+
+        # file.write ~/.zshrc "$(file.insert_before ~/.zshrc ZSH/oh-my-zsh.sh $insert)"
     }
 
     env zsh -l

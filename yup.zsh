@@ -8,16 +8,15 @@ yup() {
 
     local cmd=$1
 
-    # lib src
-    for src_file ($YHOME/src/*.zsh) {
-        [[ -f $src_file ]] && source $src_file
+    for lib_file ($YHOME/lib/*.zsh) {
+        [[ -f $lib_file ]] && source $lib_file
     }
-    for src_file ($YHOME/.addons/**/src/*(.)) {
-        [[ -f $src_file ]] && source $src_file
+    for lib_file ($YHOME/.addons/**/lib/*(.)) {
+        [[ -f $lib_file ]] && source $lib_file
     }
 
     # core call
-    local cmd_file=$YHOME/cmd/${cmd}.zsh
+    local cmd_file=$YHOME/cmd/${cmd}.zshQ
     if [[ -f $cmd_file ]] {
         source $cmd_file
         $cmd $*[2,-1]

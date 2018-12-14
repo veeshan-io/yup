@@ -1,5 +1,27 @@
 setopt NO_NOMATCH
 update() {
+    while {getopts c:i arg} {
+        case $arg {
+            (i)
+            local init=1
+            ;;
+            (c)
+            local config=$OPTARG
+            ;;
+        }
+    }
+    shift $((OPTIND - 1))
+
+    make_yuprc() {
+        local -A vars
+        vars=(
+            yhome
+            $YHOME
+        )
+        "$(curl -fsSL $1)"
+        file.write ~/.yuprc "$(view.render $YHOME/.yuprc-example ${(kv)vars})"
+    }
+
     up_addons() {
         local -A checked
 
@@ -56,11 +78,6 @@ update() {
             }
             echo "source $pub" >> $YHOME/.autoload
         }
-    }
-
-    getopts i arg
-    if [[ $arg ]] {
-        local init=1
     }
 
     if [[ ! $_addons ]] {
