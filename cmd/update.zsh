@@ -104,6 +104,10 @@ update() {
     rebuild_autoload
     echo ""
 
+    if [[ $custom ]] {
+        source ~/.yuprc
+    }
+
     # 重启
     if [[ ! $init ]] {
         env zsh -l
