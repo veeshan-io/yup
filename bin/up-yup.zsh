@@ -15,7 +15,7 @@ main() {
     git -C $YHOME/.addons/ylib reset --hard origin/${br}
 
     # 执行更新
-    source $YHOME/yup.zsh
+    source ~/.yuprc
     yup update
 }
 
