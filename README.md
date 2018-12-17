@@ -69,6 +69,12 @@ rm -rf ~/.yup
 rm ~/.yuprc
 ```
 
+## 关于 YLib
+
+```YLib```是尝试对zsh的贡献，Yup以及yup-tool的很多可抽象功能都会在YLib中实现，该库完全可以脱离Yup执行，只是在Yup中会默认载入。
+
+具体提供的功能，可[点击这里](https://github.com/veeshan-io/ylib)查看。
+
 ## Yup 扩展
 
 用户可以根据自己的需要构建自己的Yup扩展。
