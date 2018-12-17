@@ -54,7 +54,7 @@ yup更新有两种方式，一种是更新扩展，以及更新自身（以及�
 
 ### 基于远程 yuprc 构建 Yup 系统
 
-为了方便企业部署，更新指令允许指定一个远程地址上的```.yuprc```范例文件，替换现有的```~/.yuprc```文件并更新，以下是部署范例：
+为了方便企业部署，更新指令允许指定一个远程地址上的```.yuprc```范例文件，替换现有的```~/.yuprc```文件并更新，这样在安装完yup之后，执行以下范例指令即可完成shell环境构建：
 
 ```bash
 yup update -u https://github.com/LXTechnic/public/blob/master/yuprc/general.zsh
