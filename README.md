@@ -6,7 +6,9 @@ Yup是一个Shell脚本管理工具，同时也会提供一些便捷脚本和Zsh
 
 - [ ] 为Command增加代码提示
 
-## 安装 Yup
+## 基本使用
+
+### 安装 Yup
 
 首先安装所需要的基础环境，这里以Ubuntu系统为例：
 
@@ -28,8 +30,47 @@ zsh启动后安装yup：
 zsh -c "$(curl -fsSL https://raw.githubusercontent.com/veeshan-io/yup/master/setup.zsh)"
 ```
 
-## .yuprc
+### .yuprc
 
 安装完民后会生成```~/.yuprc```文件，该文件将先于oh-my-zsh载入，因此编辑此文件将可以覆盖ohmyzsh的部分配置。
 
-你可以在
+### 添加扩展
+
+yup主要用于管理你的脚本或是运维工具，所以其主要功能是由扩展来实现。LXTech团队提供了一个基础的通用扩展，你可以编辑```~/.yuprc```文件，在```_addons```数组中添加扩展的git地址。如下所示：
+
+```bash
+_addons=(
+    https://github.com/LXTechnic/yup-tool.git
+)
+```
+
+之后执行```yup update```更新扩展。
+
+### 更新 Yup
+
+yup更新有两种方式，一种是更新扩展，以及更新自身（以及扩展）。
+
+更新扩展就如上文所述使用```yup update```即可。对yup自身的更新请使用```up-yup```指令，该指令同时会更新扩展。
+
+### 基于远程 yuprc 构建 Yup 系统
+
+为了方便企业部署，更新指令允许指定一个远程地址上的```.yuprc```范例文件，替换现有的```~/.yuprc```文件并更新，以下是部署范例：
+
+```bash
+yup update -u https://github.com/LXTechnic/public/blob/master/yuprc/general.zsh
+```
+
+### 删除 Yup 或重新安装
+
+重新安装Yup非常简单，只需要删除一些文件即可：
+
+```bash
+rm -rf ~/.yup
+rm ~/.yuprc
+```
+
+## Yup 扩展
+
+用户可以根据自己的需要构建自己的Yup扩展。
+
+> 以下内容待完善。
