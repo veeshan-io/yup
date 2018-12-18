@@ -32,15 +32,15 @@ zsh -c "$(curl -fsSL https://raw.githubusercontent.com/veeshan-io/yup/master/set
 
 ### .yuprc
 
-安装完民后会生成```~/.yuprc```文件，该文件将先于oh-my-zsh载入，因此编辑此文件将可以覆盖ohmyzsh的部分配置。
+安装后会生成```~/.yuprc```文件，该文件将先于oh-my-zsh载入，因此编辑此文件将可以覆盖ohmyzsh的部分配置。
 
 ### 添加扩展
 
-yup主要用于管理你的脚本或是运维工具，所以其主要功能是由扩展来实现。LXTech团队提供了一个基础的通用扩展，你可以编辑```~/.yuprc```文件，在```_addons```数组中添加扩展的git地址。如下所示：
+yup用于管理你的脚本或是运维工具，所以其大量功能是由扩展来实现。LXTech团队提供了一个基础的通用扩展，你可以编辑```~/.yuprc```文件，在```_addons```数组中添加扩展的git地址。如下所示：
 
 ```bash
 _addons=(
-    https://github.com/LXTechnic/yup-tool.git
+  https://github.com/LXTechnic/yup-tool.git
 )
 ```
 
@@ -48,7 +48,7 @@ _addons=(
 
 ### 更新 Yup
 
-yup更新有两种方式，一种是更新扩展，以及更新自身（以及扩展）。
+yup更新有两种方式，一种是更新扩展，以及更新自身（包括扩展）。
 
 更新扩展就如上文所述使用```yup update```即可。对yup自身的更新请使用```up-yup```指令，该指令同时会更新扩展。
 
@@ -79,4 +79,4 @@ rm ~/.yuprc
 
 用户可以根据自己的需要构建自己的Yup扩展。
 
-> 以下内容待完善。
+
