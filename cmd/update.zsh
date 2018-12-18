@@ -84,8 +84,8 @@ update() {
 
     if [[ $custom ]] {
         make_yuprc $custom
-        source ~/.yuprc
     }
+    source ~/.yuprc
 
     if [[ ! $_addons ]] {
         _addons=()
