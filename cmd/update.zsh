@@ -50,14 +50,14 @@ update() {
 
     rebuild_bin() {
         rm -f $YHOME/.bin/*
-        for bin ($YHOME/bin/*.zsh) {
+        for bin ($YHOME/bin/*) {
             if [[ ! -e $bin ]] {
                 continue
             }
             chmod +x $bin
             ln -s $bin $YHOME/.bin/${${bin##*/}%.*}
         }
-        for bin ($YHOME/.addons/**/bin/*.zsh) {
+        for bin ($YHOME/.addons/**/bin/*) {
             if [[ ! -e $bin ]] {
                 continue
             }
